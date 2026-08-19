@@ -1,91 +1,279 @@
-// Mobile nav toggle
-const navToggle = document.getElementById('navToggle');
-const navMobile = document.getElementById('navMobile');
+// ===============================================================
+// MOBILE NAVIGATION
+// ===============================================================
 
-navToggle.addEventListener('click', () => {
-  const isOpen = navMobile.classList.toggle('open');
-  navToggle.setAttribute('aria-expanded', String(isOpen));
-});
+const navToggle = document.getElementById("navToggle");
+const navMobile = document.getElementById("navMobile");
 
-navMobile.querySelectorAll('a').forEach((link) => {
-  link.addEventListener('click', () => {
-    navMobile.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
+if (navToggle && navMobile) {
+  navToggle.addEventListener("click", () => {
+    const isOpen = navMobile.classList.toggle("open");
+
+    navToggle.setAttribute(
+      "aria-expanded",
+      String(isOpen)
+    );
   });
-});
 
-// ---------------------------------------------------------------
-// Image placeholders: any <img class="js-placeholder"> that fails
-// to load (because the file doesn't exist yet) gets marked "is-empty",
-// which shows a dashed box with the expected file path instead of a
-// broken-image icon. Once a real file exists at that path, it just
-// works — no code changes needed.
-// ---------------------------------------------------------------
-document.querySelectorAll('img.js-placeholder').forEach((img) => {
-  img.addEventListener('error', () => {
-    img.classList.add('is-empty');
+  navMobile.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navMobile.classList.remove("open");
+
+      navToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+    });
   });
+}
+
+
+// ===============================================================
+// IMAGE PLACEHOLDERS
+// ===============================================================
+
+document.querySelectorAll("img.js-placeholder").forEach((img) => {
+
+  img.addEventListener("error", () => {
+    img.classList.add("is-empty");
+  });
+
 });
 
-// ---------------------------------------------------------------
-// INTERVIEWS — add a new interview by adding one line below.
-// `id` is the part of the YouTube URL after "v=" or after "youtu.be/".
-// Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ  ->  id: 'dQw4w9WgXcQ'
-// ---------------------------------------------------------------
+
+// ===============================================================
+// INTERVIEWS
+// ===============================================================
+
 const VIDEOS = [
-  // { id: 'dQw4w9WgXcQ', title: 'On the return of Las Voces que Regresan' },
-  // { id: 'XXXXXXXXXXX', title: 'Building the ensemble: a conversation' },
+
+  {
+    type: "youtube",
+    id: "m6IKK8qtl8Y",
+    title: "Interview"
+  },
+
+  {
+    type: "facebook",
+    url: "https://www.facebook.com/reel/1363550815922152",
+    title: "Facebook Interview"
+  }
+
 ];
 
-const interviewsGrid = document.getElementById('interviewsGrid');
+
+const interviewsGrid =
+  document.getElementById("interviewsGrid");
+
+
+// ===============================================================
+// HTML ESCAPE
+// ===============================================================
+
+function escapeHTML(value) {
+
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+// ===============================================================
+// RENDER VIDEOS
+// ===============================================================
 
 function renderVideos() {
-  if (!interviewsGrid) return;
 
-  if (VIDEOS.length === 0) {
-    interviewsGrid.innerHTML =
-      '<div class="empty-state">No interviews added yet. Add one in script.js (look for the VIDEOS list).</div>';
+  if (!interviewsGrid) {
     return;
   }
 
-  interviewsGrid.innerHTML = VIDEOS.map((video) => `
-    <div class="video-card">
-      <div class="video-frame-wrap">
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/${video.id}"
-          title="${video.title.replace(/"/g, '&quot;')}"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+
+  if (!VIDEOS.length) {
+
+    interviewsGrid.innerHTML = `
+      <div class="empty-state">
+        No interviews added yet.
       </div>
-      <div class="video-meta">
-        <h3 class="video-title">${video.title}</h3>
-      </div>
-    </div>
-  `).join('');
+    `;
+
+    return;
+  }
+
+
+  interviewsGrid.innerHTML = VIDEOS
+    .map((video) => {
+
+
+      // =========================================================
+      // YOUTUBE
+      // =========================================================
+
+      if (video.type === "youtube") {
+
+        const title =
+          escapeHTML(video.title);
+
+        const embedURL =
+          `https://www.youtube-nocookie.com/embed/${encodeURIComponent(video.id)}?rel=0&modestbranding=1`;
+
+        return `
+          <article class="video-card">
+
+            <div class="video-media youtube-media">
+
+              <iframe
+                src="${embedURL}"
+                title="${title}"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+
+            </div>
+
+            <div class="video-meta">
+
+              <div class="video-type">
+                YouTube Interview
+              </div>
+
+              <h3 class="video-title">
+                ${title}
+              </h3>
+
+            </div>
+
+          </article>
+        `;
+      }
+
+
+      // =========================================================
+      // FACEBOOK REEL
+      // =========================================================
+
+      if (video.type === "facebook") {
+
+        const title =
+          escapeHTML(video.title);
+
+        const facebookURL =
+          encodeURIComponent(video.url);
+
+        const embedURL =
+          `https://www.facebook.com/plugins/video.php?href=${facebookURL}&show_text=false&width=500`;
+
+        return `
+          <article class="video-card">
+
+            <div class="video-media facebook-media">
+
+              <div
+                class="facebook-backdrop"
+                aria-hidden="true"
+              ></div>
+
+
+              <div class="facebook-reel">
+
+                <iframe
+                  src="${embedURL}"
+                  title="${title}"
+                  loading="lazy"
+                  scrolling="no"
+                  frameborder="0"
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+
+              </div>
+
+            </div>
+
+
+            <div class="video-meta">
+
+              <div class="video-type">
+                Facebook Reel
+              </div>
+
+              <h3 class="video-title">
+                ${title}
+              </h3>
+
+            </div>
+
+          </article>
+        `;
+      }
+
+
+      return "";
+
+    })
+    .join("");
+
 }
+
 
 renderVideos();
 
-// Scroll reveal
-const revealEls = document.querySelectorAll('.reveal');
 
-if ('IntersectionObserver' in window) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15 }
-  );
+// ===============================================================
+// SCROLL REVEAL
+// ===============================================================
 
-  revealEls.forEach((el) => observer.observe(el));
+const revealEls =
+  document.querySelectorAll(".reveal");
+
+
+if ("IntersectionObserver" in window) {
+
+  const observer =
+    new IntersectionObserver(
+      (entries) => {
+
+        entries.forEach((entry) => {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add(
+              "in-view"
+            );
+
+            observer.unobserve(
+              entry.target
+            );
+
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.15
+      }
+    );
+
+
+  revealEls.forEach((el) => {
+
+    observer.observe(el);
+
+  });
+
+
 } else {
-  // Fallback: just show everything if IntersectionObserver isn't supported
-  revealEls.forEach((el) => el.classList.add('in-view'));
+
+  revealEls.forEach((el) => {
+
+    el.classList.add("in-view");
+
+  });
+
 }
