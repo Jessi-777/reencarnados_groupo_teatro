@@ -1400,7 +1400,6 @@ a:hover .arrow {
 
   transform: translateY(0);
 }
-
 /* ============================================================
    FOOTER
 ============================================================ */
@@ -1422,7 +1421,36 @@ a:hover .arrow {
 }
 
 .footer-note {
-  margin-top: 0.5rem !important;
-
+  margin: 0.5rem auto 0 !important;
+  text-align: center;
   color: rgba(148, 141, 134, 0.7);
+}
+
+/* ============================================================
+   SOCIAL LINKS
+============================================================ */
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  margin-bottom: 1.25rem;
+}
+.social-link svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+.social-link {
+  display: inline-flex;
+  color: var(--smoke);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.social-link:hover {
+  color: var(--ember);
+  transform: translateY(-2px);
 }
