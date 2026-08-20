@@ -1,0 +1,1 @@
+add news paper to the archives
