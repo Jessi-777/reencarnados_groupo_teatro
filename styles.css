@@ -6,6 +6,7 @@
   --ember: #c4482c;
   --smoke: #948d86;
   --border: rgba(241, 235, 225, 0.1);
+  --orange: #ff7f00;
 
   --font-display: "Playfair Display", serif;
   --font-body: "Inter", sans-serif;
@@ -1411,19 +1412,24 @@ a:hover .arrow {
 
   text-align: center;
 
-  color: var(--smoke);
+  color: var(white);
 
   font-size: 0.8rem;
+
+font-family: var(--font-display);
+
 }
 
 .footer p {
   margin: 0;
+  /* color: var(--orange); */
 }
+
 
 .footer-note {
   margin: 0.5rem auto 0 !important;
   text-align: center;
-  color: rgba(148, 141, 134, 0.7);
+  color: var(--orange);
 }
 
 /* ============================================================
@@ -1439,14 +1445,14 @@ a:hover .arrow {
   margin-bottom: 1.25rem;
 }
 .social-link svg {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   display: block;
 }
 
 .social-link {
   display: inline-flex;
-  color: var(--smoke);
+  color: var(--wine);
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
