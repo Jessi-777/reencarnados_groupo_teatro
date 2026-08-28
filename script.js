@@ -230,18 +230,21 @@ renderVideos();
 // ===============================================================
 
 const GALLERY = [
+  { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787955480/cafd8d63-3416-46e2-841a-11ae971e7c6b_qykyvb.jpg', },
+  { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787952385/0d708f53-6ff3-4296-bffc-1ab736300643_hvdn1o.jpg', },
+  { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787952385/6e231121-efed-4319-bd56-69dc91c44f36_guumkz.jpg', },
+  { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787952385/95088c0d-3057-4463-b170-367edbd17cd6_x6derc.jpg', },
+
   { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787819931/1000148554_z2ipnx.jpg', },
   // caption: 'Ensayo, agosto 2026' 
-  { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787819929/1000148462_e1sseh.jpg',},
+
   { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787819930/1000148471_alevov.jpg',},
-  { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787819928/1000148423_efs8lh.jpg',},
+
   { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787819927/1000148399_vma2yo.jpg',},
   { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787819927/1000148321_olfvpx.jpg',},
-  { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787819927/1000148384_edkd8m.jpg',},
-  { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787819927/1000148393_vywr4d.jpg',},
   { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787819927/1000148313_oyrrrd.jpg',},
   { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787819928/1000148414_xwi3t6.jpg',},
-  { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787819928/1000148423_efs8lh.jpg',},
+
   { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787819928/1000148420_uglhxa.jpg',},
   
   { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787819927/1000148384_edkd8m.jpg',},
