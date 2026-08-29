@@ -237,6 +237,8 @@ const GALLERY = [
 
   { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787819931/1000148554_z2ipnx.jpg', },
   // caption: 'Ensayo, agosto 2026' 
+  { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787967111/IMG_4205_lfphs4.jpg',},
+  { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787967110/IMG_4204_jnyigo.jpg',},
 
   { url: 'https://res.cloudinary.com/dk25jqckw/image/upload/v1787819930/1000148471_alevov.jpg',},
 
